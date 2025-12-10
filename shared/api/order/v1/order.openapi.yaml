@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: Order Service API
+  version: 1.0.0
+  description: API для управления заказами космических кораблей
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Локальный сервер разработки
+
+paths:
+  /orders:
+    $ref: './paths/orders.yaml'
+  /orders/{order_uuid}:
+    $ref: './paths/order_by_uuid.yaml'
+  /orders/{order_uuid}/pay:
+    $ref: './paths/order_pay.yaml'
+  /orders/{order_uuid}/cancel:
+    $ref: './paths/order_cancel.yaml'
+
+components:
+  schemas:
+    CreateOrderRequest:
+      $ref: './components/create_order_request.yaml'
+    CreateOrderResponse:
+      $ref: './components/create_order_response.yaml'
+    GetOrderResponse:
+      $ref: './components/get_order_response.yaml'
+    PayOrderRequest:
+      $ref: './components/pay_order_request.yaml'
+    PayOrderResponse:
+      $ref: './components/pay_order_response.yaml'
+    OrderDto:
+      $ref: './components/order_dto.yaml'
+    Error:
+      $ref: './components/errors/generic_error.yaml'
+    BadRequestError:
+      $ref: './components/errors/bad_request_error.yaml'
+    NotFoundError:
+      $ref: './components/errors/not_found_error.yaml'
+    ConflictError:
+      $ref: './components/errors/conflict_error.yaml'
+    BadGatewayError:
+      $ref: './components/errors/bad_gateway_error.yaml'
+    InternalServerError:
+      $ref: './components/errors/internal_server_error.yaml'
+    ValidationError:
+      $ref: './components/errors/validation_error.yaml'
+  parameters:
+    OrderUuid:
+      $ref: './params/order_uuid.yaml'
+
+x-ogen:
+  package: order/v1
+  target: shared/pkg/openapi/order/v1

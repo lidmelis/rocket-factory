@@ -1,0 +1,14 @@
+allOf:
+  - $ref: './generic_error.yaml'
+  - type: object
+    properties:
+      code:
+        type: integer
+        example: 422
+        description: Код ошибки
+      details:
+        type: array
+        items:
+          type: string
+        description: Детали ошибок валидации
+        example: ["field 'user_uuid' is required"]

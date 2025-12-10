@@ -1,0 +1,8 @@
+allOf:
+  - $ref: './generic_error.yaml'
+  - type: object
+    properties:
+      code:
+        type: integer
+        example: 400
+        description: Код ошибки
